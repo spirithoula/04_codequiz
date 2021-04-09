@@ -56,15 +56,46 @@ var myQuestions = [
   }
 ];
 
-
-
-function startQuiz() {
-    isWin = false;
-    timerCount = 10;
-    startButton.disabled = true;
-    renderBlanks()
-    startTimer()
+function generateQuiz(questions, quizContainer, resultsContainer, submitButton){
+  function showQuestions(questions, quizContainer){
+    var output = [];
+    var answers;
+    for(var i=0; i<questions.lenght; i++){
+      answers = [];
+      for(letter in questions[i].answers){
+        answers.push(
+          '<label>'
+            + '<input type="radio" name="question'+i+'"value="'+letter+'">'
+            + letter + ': '
+            + questions[i].answers[letter]
+          + '<label>'
+        );
+      }
+      output.push(
+        '<div class="question">' + questions[i].question + '</div>'
+          + '<div class="answers">' + answers.join('') + '</div>'
+      );
+    }
+    quizContainer.innerHTML = output.join('');
   }
+  function showResults(questions, quizContainer, resultsContainer){
+    var answersContainers = quizContainer.querySelectorAll('.answers');
+    var userAnswer = '';
+    var numCorrect = 0;
+
+    for(var i=0; i<questions.lenght; i++){
+      
+    }
+
+  }
+  showQuestions(questions, quizContainer);
+
+  submitButton.onclick = function () {
+    showResults(questions. quizContainer, resultsContainer);
+  }
+}
+
+
 
 
 function startTimer() {
@@ -84,14 +115,3 @@ function startTimer() {
     }, 1000);
   }
 
-
-  //Question 1: If/else is a:
-    //a. compairson statement  b. conditional statement  c. boolean  d. function
-  //Question 2: Which Math.method rounds up?
-    //a. math.floor  b. math.ceiling  c. math.round  d. math.random
-  //Question 3: Function parameters are placed in:
-    //a. ()  b. {}  c. []  d. " "
-  //Question 4: Arrays can store:
-    //a. numbers  b. strings  c. booleans  d. all of the above  
-  //Question 5: What does '=' mean in Javascript?
-    //a. equal to operator  b. declaring operator  c. assignment operator  d. undefined
