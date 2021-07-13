@@ -1,13 +1,29 @@
-var startButton = document.getElementById("start");
-var timer = document.querySelector("timer");
-var quizContainer = document.getElementById("quiz");
-var resultsContainer = document.getElementById("results");
-var submitButton = document.getElementById("submit");
 
-var timerInterval;
+var timer = document.querySelector("#startTimer");
+var questionsDiv = document.querySelector("#questions");
+var currentTime = document.querySelector("#currentTime");
+var createUl = document.createElement("ul");
+
+var questionsIndex = 0;
+var defaultTime = 0;
 var timeLeft = 100;
 var wrongAnswer = -10;
 var score = 0;
+
+timer.addEventListener("click", function () {
+  if (defaultTime === 0) {
+    defaultTime = setInterval(function () {
+      timeLeft--;
+      currentTime.textContent = "Time: " + timeLeft;
+
+      if (timeLeft <= 0) {
+        clearTimeout(defaultTime);
+        currentTime.textContent = "Time's Up!";
+      }
+    }, 1000);
+  }
+  render(questionsIndex);
+});
 
 var myQuestions = [
   {
@@ -62,24 +78,10 @@ var myQuestions = [
   }
 ];
 
-timer.addEventListener("click", function () {
-  if (defaultTime === 0) {
-    defaultTime = setInterval(function () {
-      timeLeft--;
-      currentTime.textContent = "Time: " + timeLeft;
 
-      if (timeLeft <= 0) {
-        clearTimeout(defaultTime);
-        currentTime.textContent = "Time's Up!";
-      }
-    }, 1000);
-  }
-  render(questionsIndex);
-});
 
 function render(questionsIndex) {
   questionsDiv.innerHTML = "";
-  createUl.innerHTML = "";
 
   for (i = 0; i < questions.length; i++) {
     var userQuestion = questions[questionsIndex].title;
@@ -101,13 +103,12 @@ function compare(event) {
   if (element.matches("li")) {
     var createDiv = document.createElement("div");
     createDiv.setAttribute("id", "createDiv");
-    //this calls back the answer in the array to distinguish right answers out of the text content
     if (element.textContent === questions[questionsIndex].answer) {
       score++;
-      createDiv.textContent = "Correct Answer!";
+      createDiv.textContent = "Correct!";
     } else {
       timeLeft = timeLeft - penalty;
-      createDiv.textContent = "Incorrect, the answer is " + questions[questionsIndex].answer;
+      createDiv.textContent = "Incorrect! The answer is " + questions[questionsIndex].answer;
     }
   }
   questionsIndex++;
