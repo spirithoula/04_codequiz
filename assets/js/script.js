@@ -4,6 +4,11 @@ var quizContainer = document.getElementById("quiz");
 var resultsContainer = document.getElementById("results");
 var submitButton = document.getElementById("submit");
 
+var timerInterval;
+var timeLeft = 100;
+var wrongAnswer = -10;
+var score = 0;
+
 var myQuestions = [
   {
     question: "If/else is a",
@@ -57,9 +62,18 @@ var myQuestions = [
   }
 ];
 
-  function init() {
-    startButton.onclick = function () {
-      startQuiz();
-    }
-  } 
+timer.addEventListener("click", function () {
+  if (defaultTime === 0) {
+    defaultTime = setInterval(function () {
+      timeLeft--;
+      currentTime.textContent = "Time: " + timeLeft;
+
+      if (timeLeft <= 0) {
+        clearTimeout(defaultTime);
+        currentTime.textContent = "Time Over!";
+      }
+    }, 1000);
+  }
+  render(questionsIndex);
+});
 
