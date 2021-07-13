@@ -1,0 +1,55 @@
+body {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(184, 181, 181);
+  }
+  
+  .container {
+    width: 900px;
+    max-width: 75%;
+    background-color: rgb(80, 80, 228);
+    border-radius: 10px;
+    padding: 10px;
+  }
+  
+  .btn-grid {
+    display: grid;
+  }
+  
+  .btn {
+    background-color: rgb(80, 80, 228);
+    padding: 10px;
+    outline: none;
+  }
+  
+  .btn:hover {
+    background-color: rgb(80, 80, 228);
+  }
+  
+  .start-btn {
+    background-color: rgb(184, 181, 181);
+    padding: 15px;
+    font-size: larger;
+    font-weight: bolder;
+  }
+  .next-btn {
+    background-color: rgb(235, 29, 98);
+    padding: 15px;
+    font-size: larger;
+    font-weight: bolder;
+  }
+  
+  .controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .hide {
+    display: none;
+  }

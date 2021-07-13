@@ -1,4 +1,4 @@
-var startButton = document.querySelector(".start-button");
+var startButton = document.getElementById("start");
 var timer = document.querySelector(".timer-count");
 var quizContainer = document.getElementById("quiz");
 var resultsContainer = document.getElementById("results");
@@ -52,66 +52,14 @@ var myQuestions = [
       b: 'declaring operator',
       c: 'assignment operator',
       d: 'undefined'
-    }
+    },
+    correctAnswer: 'c'
   }
 ];
 
-function generateQuiz(questions, quizContainer, resultsContainer, submitButton){
-  function showQuestions(questions, quizContainer){
-    var output = [];
-    var answers;
-    for(var i=0; i<questions.lenght; i++){
-      answers = [];
-      for(letter in questions[i].answers){
-        answers.push(
-          '<label>'
-            + '<input type="radio" name="question'+i+'"value="'+letter+'">'
-            + letter + ': '
-            + questions[i].answers[letter]
-          + '<label>'
-        );
-      }
-      output.push(
-        '<div class="question">' + questions[i].question + '</div>'
-          + '<div class="answers">' + answers.join('') + '</div>'
-      );
+  function init() {
+    startButton.onclick = function () {
+      startQuiz();
     }
-    quizContainer.innerHTML = output.join('');
-  }
-  function showResults(questions, quizContainer, resultsContainer){
-    var answersContainers = quizContainer.querySelectorAll('.answers');
-    var userAnswer = '';
-    var numCorrect = 0;
-
-    for(var i=0; i<questions.lenght; i++){
-      
-    }
-
-  }
-  showQuestions(questions, quizContainer);
-
-  submitButton.onclick = function () {
-    showResults(questions. quizContainer, resultsContainer);
-  }
-}
-
-
-
-
-function startTimer() {
-    timer = setInterval(function() {
-      timerCount--;
-      timerElement.textContent = timerCount;
-      if (timerCount >= 0) {
-        if (isWin && timerCount > 0) {
-          clearInterval(timer);
-          winGame();
-        }
-      }
-      if (timerCount === 0) {
-        clearInterval(timer);
-        loseGame();
-      }
-    }, 1000);
-  }
+  } 
 
