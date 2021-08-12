@@ -78,10 +78,9 @@ var myQuestions = [
   }
 ];
 
-
-
 function render(questionsIndex) {
   questionsDiv.innerHTML = "";
+  createUl.innerHTML = "";
 
   for (i = 0; i < questions.length; i++) {
     var userQuestion = questions[questionsIndex].title;
@@ -120,4 +119,72 @@ function compare(event) {
     render(questionsIndex);
   }
   questionsDiv.appendChild(createDiv);
+}
+
+function quizOver() {
+  questionsDiv.innerHTML = "";
+  currentTime.innerHTML = "";
+
+  var createH1 = document.createElement("h1");
+  createH1.setAttribute("id", "createH1");
+  createH1.textContent = "Quiz Over!";
+
+  questionsDiv.appendChild(createH1);
+
+  var createP = document.createElement("p");
+  createP.setAttribute("id", "createP");
+
+  questionsDiv.appendChild(createP);
+
+  if (timeLeft >= 0) {
+    var scoreInSeconds = timeLeft;
+    var createP1 = document.createElement("p");
+    createP.textContant = "Final score: " + scoreInSeconds;
+
+    questionsDiv.appendChild(createP1);
+  }
+
+  var createLabel = document.createElement("label");
+  createLabel.setAttribute("id", "createLabel");
+  createLabel.textContent = "Please enter your name: ";
+
+  questionsDiv.appendChild(createLabel);
+
+  var createInput = document.createElement("input");
+  createInput.setAttribute("type", "text");
+  createInput.setAttribute("id", "name");
+  createInput.textContent = "";
+
+  questionsDiv.appendChild(createInput);
+
+  var createSubmit = document.createElement("button");
+  createSubmit.setAttribute("type", "submit");
+  createSubmit.setAttribute("id", "Submit");
+  createSubmit.textContent = "Submit";
+
+  questionsDiv.appendChild(createSubmit);
+
+  createSubmit.addEventListener("click", function () {
+    var name = createInput.value;
+
+    if (name === null) {
+      console.log("No value entered!");
+    } else {
+      var finalScore = {
+        name: name,
+        score: score,
+      };
+      console.log(finalScore);
+
+      var allScores = localStorage.getItem("allScores");
+      if (allScores === null) {
+        allScores = [];
+      } else {
+        allScores = JSON.parse(allScores);
+      }
+      allScores.push(finalScore);
+      var newScore = JSON.stringify(allScores);
+      localStorage.setItem("allScores", newScore);
+    }
+  });
 }
