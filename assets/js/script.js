@@ -104,7 +104,7 @@ function compare(event) {
     createDiv.setAttribute("id", "createDiv");
     if (element.textContent === questions[questionsIndex].answer) {
       score++;
-      createDiv.textContent = "Correct!";
+      createDiv.textContent = "Good Job!";
     } else {
       timeLeft = timeLeft - penalty;
       createDiv.textContent = "Incorrect! The answer is " + questions[questionsIndex].answer;
@@ -116,12 +116,6 @@ function compare(event) {
 function quizOver() {
   questionsDiv.innerHTML = "";
   currentTime.innerHTML = "";
-
-  var createH1 = document.createElement("h1");
-  createH1.setAttribute("id", "createH1");
-  createH1.textContent = "Quiz Over!";
-
-  questionsDiv.appendChild(createH1);
 
   var createP = document.createElement("p");
   createP.setAttribute("id", "createP");
@@ -160,8 +154,8 @@ function quizOver() {
     var name = createInput.value;
 
     if (name === null) {
-      console.log("No value entered!");
-    } else {
+      console.log("Please enter a name");
+    } else { 
       var finalScore = {
         name: name,
         score: score,
