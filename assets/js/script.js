@@ -139,14 +139,14 @@ function quizOver() {
   if (timeLeft >= 0) {
     var scoreInSeconds = timeLeft;
     var createP1 = document.createElement("p");
-    createP.textContant = "Final score: " + scoreInSeconds;
+    createP.textContant = "Score: " + scoreInSeconds;
 
     questionsDiv.appendChild(createP1);
   }
 
   var createLabel = document.createElement("label");
   createLabel.setAttribute("id", "createLabel");
-  createLabel.textContent = "Please enter your name: ";
+  createLabel.textContent = "Your name: ";
 
   questionsDiv.appendChild(createLabel);
 
