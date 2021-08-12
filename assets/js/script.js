@@ -161,16 +161,6 @@ function quizOver() {
         score: score,
       };
       console.log(finalScore);
-
-      var allScores = localStorage.getItem("allScores");
-      if (allScores === null) {
-        allScores = [];
-      } else {
-        allScores = JSON.parse(allScores);
-      }
-      allScores.push(finalScore);
-      var newScore = JSON.stringify(allScores);
-      localStorage.setItem("allScores", newScore);
     }
   });
 }
