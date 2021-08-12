@@ -111,14 +111,6 @@ function compare(event) {
     }
   }
   questionsIndex++;
-
-  if (questionsIndex >= questions.length) {
-    quizOver();
-    createDiv.textContent = "You got right:" + score + "/" + questions.length;
-  } else {
-    render(questionsIndex);
-  }
-  questionsDiv.appendChild(createDiv);
 }
 
 function quizOver() {
